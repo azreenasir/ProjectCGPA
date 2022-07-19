@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class User implements Serializable {
 
-    private long Student_Id;
+    private static long Student_Id;
     private String fullname;
     private String email;
     private String password;
@@ -12,7 +12,7 @@ public class User implements Serializable {
     public User() {
     }
 
-    public long getStudent_Id() {
+    public static long getStudent_Id() {
         return Student_Id;
     }
 

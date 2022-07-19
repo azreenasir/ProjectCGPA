@@ -2,5 +2,5 @@
     <string name="app_name">ProjectCgpa</string>
     <string name="welcome">Hi, Welcome!</string>
     <string name="welcomedesc">Introducing our CGPA Calculator application where you can calculate your cgpa with ease. :)</string>
-    <string name="cgpa" >0.00</string>
+    <string name="cgpa">0.00</string>
 </resources>

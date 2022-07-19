@@ -4,60 +4,71 @@ import java.io.Serializable;
 
 public class Semester implements Serializable {
 
-    private int registerId;
-    private String semester;
-    private long studentId;
-    private String courseCode;
-    private int gradeId;
+    private long mId;
+    private String semester_name;
+    private double total_gpa;
+    private int total_course;
+    private double total_credit;
+    private String student_id;
+
 
     public Semester() {
+
+    }
+    public Semester(long mId, String semester_name, double total_gpa, int total_course, double total_credit, String student_id) {
+        this.mId = mId;
+        this.semester_name = semester_name;
+        this.total_gpa = total_gpa;
+        this.total_course = total_course;
+        this.total_credit = total_credit;
+        this.student_id = student_id;
     }
 
-    public Semester(int registerId, String semester, long studentId, String courseCode, int gradeId) {
-        this.registerId = registerId;
-        this.semester = semester;
-        this.studentId = studentId;
-        this.courseCode = courseCode;
-        this.gradeId = gradeId;
+    public long getmId() {
+        return mId;
     }
 
-    public int getRegisterId() {
-        return registerId;
+    public void setmId(long mId) {
+        this.mId = mId;
     }
 
-    public void setRegisterId(int registerId) {
-        this.registerId = registerId;
+    public String getSemester_name() {
+        return semester_name;
     }
 
-    public String getSemester() {
-        return semester;
+    public void setSemester_name(String semester_name) {
+        this.semester_name = semester_name;
     }
 
-    public void setSemester(String semester) {
-        this.semester = semester;
+    public double getTotal_gpa() {
+        return total_gpa;
     }
 
-    public long getStudentId() {
-        return studentId;
+    public void setTotal_gpa(double total_gpa) {
+        this.total_gpa = total_gpa;
     }
 
-    public void setStudentId(long studentId) {
-        this.studentId = studentId;
+    public int getTotal_course() {
+        return total_course;
     }
 
-    public String getCourseCode() {
-        return courseCode;
+    public void setTotal_course(int total_course) {
+        this.total_course = total_course;
     }
 
-    public void setCourseCode(String courseCode) {
-        this.courseCode = courseCode;
+    public double getTotal_credit() {
+        return total_credit;
     }
 
-    public int getGradeId() {
-        return gradeId;
+    public void setTotal_credit(double total_credit) {
+        this.total_credit = total_credit;
     }
 
-    public void setGradeId(int gradeId) {
-        this.gradeId = gradeId;
+    public String getStudent_id() {
+        return student_id;
+    }
+
+    public void setStudent_id(String student_id) {
+        this.student_id = student_id;
     }
 }

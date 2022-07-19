@@ -11,6 +11,7 @@
         <entry key="..\:/Users/azree/AndroidStudioProjects/ProjectCgpa/app/src/main/res/drawable/homebox.xml" value="0.238" />
         <entry key="..\:/Users/azree/AndroidStudioProjects/ProjectCgpa/app/src/main/res/drawable/ic_baseline_mode_24.xml" value="0.238" />
         <entry key="..\:/Users/azree/AndroidStudioProjects/ProjectCgpa/app/src/main/res/drawable/logo.xml" value="0.238" />
+        <entry key="..\:/Users/azree/AndroidStudioProjects/ProjectCgpa/app/src/main/res/layout/activity_course_list.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/azree/AndroidStudioProjects/ProjectCgpa/app/src/main/res/layout/activity_login.xml" value="0.33" />
         <entry key="..\:/Users/azree/AndroidStudioProjects/ProjectCgpa/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/azree/AndroidStudioProjects/ProjectCgpa/app/src/main/res/layout/activity_register_semester.xml" value="0.36666666666666664" />
@@ -20,6 +21,7 @@
         <entry key="..\:/Users/azree/AndroidStudioProjects/ProjectCgpa/app/src/main/res/layout/main_nav_drawer.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/azree/AndroidStudioProjects/ProjectCgpa/app/src/main/res/layout/main_toolbar.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/azree/AndroidStudioProjects/ProjectCgpa/app/src/main/res/layout/single_row_semester.xml" value="0.33" />
+        <entry key="..\:/Users/azree/AndroidStudioProjects/ProjectCgpa/app/src/main/res/menu/option_menu.xml" value="0.36666666666666664" />
       </map>
     </option>
   </component>

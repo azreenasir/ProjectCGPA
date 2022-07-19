@@ -4,22 +4,46 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.ContentValues;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.projectcgpa.Adapter.SemesterAdapter;
+import com.projectcgpa.DatabaseOperation.CourseOperation;
+import com.projectcgpa.DatabaseOperation.DBHelper;
+import com.projectcgpa.DatabaseOperation.SemesterOperation;
+import com.projectcgpa.calculation.CgpaCalculator;
+import com.projectcgpa.entities.Course;
+import com.projectcgpa.entities.Semester;
 import com.projectcgpa.entities.User;
 
-public class RegisterSemester extends AppCompatActivity {
+import java.util.ArrayList;
+import java.util.List;
 
+public class RegisterSemester extends AppCompatActivity implements DialogActivity.clickListenerForSemester {
     DrawerLayout drawerLayout;
     DBHelper dbHelper;
+    DialogActivity dialogActivity;
+    List<Semester> semesterList;
+    List<Course> courseList;
+    TextView cgpa_header;
+    SemesterOperation semesterOperation;
+    CourseOperation courseOperation;
+    CgpaCalculator cgpaCalculator;
+    RecyclerView recyclerView_semester_list;
+    LinearLayoutManager linearLayoutManager;
+    SemesterAdapter semesterAdapter;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,53 +69,17 @@ public class RegisterSemester extends AppCompatActivity {
         String studId = Long.toString(id);
         studentIdTV.setText(studId);
 
+        initialize_view();
+        if(semesterList.isEmpty())
+        {
+            Toast.makeText(this, "Empty List", Toast.LENGTH_LONG).show();
+        }
+
+        // navigation drawer method
         clickSem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 recreate();
-            }
-        });
-
-        AddNewSem.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final AlertDialog.Builder alert = new AlertDialog.Builder(RegisterSemester.this);
-                View mview = getLayoutInflater().inflate(R.layout.addnewsem_dialog, null);
-
-                final EditText newSemET = (EditText) mview.findViewById(R.id.semNameET);
-                Button btn_cancel = (Button) mview.findViewById(R.id.btn_cancelSem);
-                Button btn_save = (Button) mview.findViewById(R.id.btn_saveSem);
-
-                alert.setView(mview);
-
-                final AlertDialog alertDialog = alert.create();
-                alertDialog.setCanceledOnTouchOutside(false);
-
-                btn_cancel.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        alertDialog.dismiss();
-                    }
-                });
-
-                btn_save.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        String newSem = newSemET.getText().toString().trim();
-                        String studentId = studId.trim();
-
-                        ContentValues values = new ContentValues();
-
-                        if(newSem.equals("")){
-                            Toast.makeText(RegisterSemester.this, "Field cannot be blank!", Toast.LENGTH_SHORT).show();
-                        }
-                        else {
-                        }
-
-                    }
-                });
-
-                alertDialog.show();
             }
         });
 
@@ -103,8 +91,31 @@ public class RegisterSemester extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
     }
+
+    private void initialize_view() {
+        semesterList = new ArrayList<>();
+        cgpa_header = findViewById(R.id.cgpaResultTV);
+        semesterOperation = new SemesterOperation(this);
+        cgpaCalculator = new CgpaCalculator();
+        //String cgpa_total = cgpaCalculator.calculatedCGPA(courseList);
+        //cgpa_header.setText(cgpa_total);
+        semesterList = semesterOperation.getAllSemester();
+        recyclerView_semester_list = findViewById(R.id.recyclerview_semester);
+        linearLayoutManager = new LinearLayoutManager(RegisterSemester.this);
+        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        recyclerView_semester_list.setLayoutManager(linearLayoutManager);
+        recyclerView_semester_list.setHasFixedSize(true);
+        semesterAdapter = new SemesterAdapter(RegisterSemester.this, semesterList);
+        recyclerView_semester_list.setAdapter(semesterAdapter);
+        dialogActivity = new DialogActivity(RegisterSemester.this);
+        DialogActivity.setclickListenerForSemester(this);
+    }
+
+    public void addNewSemester(View view) {
+        dialogActivity.showDialogSaveSemester();
+    }
+
 
     public void clickMenu(View view) {
         openDrawer(drawerLayout);
@@ -120,13 +131,27 @@ public class RegisterSemester extends AppCompatActivity {
         }
     }
 
-    public void clickHome(View view) {
-        startActivity(new Intent(RegisterSemester.this, MainActivity.class));
-    }
-
     @Override
     protected void onPause() {
         super.onPause();
         closeDrawer(drawerLayout);
+    }
+
+    @Override
+    public void saveNewSemester(Semester semester) {
+        semesterList.add(semester);
+        semesterAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void refreshListAfterDeleteSemester(Semester semester, int position) {
+        semesterList.remove(semester);
+        semesterAdapter.notifyItemRemoved(position);
+        courseList.clear();
+        courseList = courseOperation.getAllCourses();
+        String cgpa_total = cgpaCalculator.calculatedCGPA(courseList);
+        cgpa_header.setText(cgpa_total);
+        Toast.makeText(this,"Delete",Toast.LENGTH_SHORT).show();
+        Log.d("Anik", "Data deleted");
     }
 }
