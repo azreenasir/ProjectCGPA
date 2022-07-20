@@ -1,8 +1,7 @@
 package com.projectcgpa.entities;
 
-import java.io.Serializable;
 
-public class Course implements Serializable {
+public class Course {
 
     private long mId;
     private String course_name;
@@ -67,5 +66,46 @@ public class Course implements Serializable {
 
     public void setCalculated_cgpa(double calculated_cgpa) {
         this.calculated_cgpa = calculated_cgpa;
+    }
+
+    public String getGrade() {
+        String points;
+        if(getObtain_gpa() == 4.00 && getObtain_gpa()> 3.67 ){
+            points = "A+/A";
+        }
+        else if (getObtain_gpa() == 3.67 || getObtain_gpa()> 3.33){
+            points = "A-";
+        }
+        else if (getObtain_gpa() == 3.33 || getObtain_gpa() > 3.00 ){
+            points = "B+";
+        }
+        else if (getObtain_gpa() == 3.00 || getObtain_gpa() > 2.67){
+            points = "B";
+        }
+        else if (getObtain_gpa() == 2.67 || getObtain_gpa() > 2.33){
+            points = "B-";
+        }
+        else if (getObtain_gpa() == 2.33 || getObtain_gpa() > 2.00){
+            points = "C+";
+        }
+        else if (getObtain_gpa() == 2.00 || getObtain_gpa() > 1.67){
+            points = "C";
+        }
+        else if (getObtain_gpa() == 1.67 || getObtain_gpa() > 1.33){
+            points = "C-";
+        }
+        else if (getObtain_gpa() == 1.33 || getObtain_gpa() > 1.00){
+            points = "D+";
+        }
+        else if (getObtain_gpa() == 1.00 || getObtain_gpa() > 0.67){
+            points = "D";
+        }
+        else if (getObtain_gpa() == 0.67 || getObtain_gpa() > 0.01){
+            points = "E";
+        }
+        else
+            points = "F";
+
+        return points;
     }
 }

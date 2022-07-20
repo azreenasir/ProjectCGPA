@@ -1,8 +1,6 @@
 package com.projectcgpa.entities;
 
-import java.io.Serializable;
-
-public class Semester implements Serializable {
+public class Semester {
 
     private long mId;
     private String semester_name;

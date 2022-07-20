@@ -1,13 +1,17 @@
 package com.projectcgpa;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.projectcgpa.DatabaseOperation.DBHelper;
 import com.projectcgpa.entities.User;
@@ -52,8 +56,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-
     }
 
     public void clickMenu(View view) {
@@ -70,10 +72,37 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public static void logout(Activity activity) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+        builder.setTitle("Logout");
+        builder.setMessage("Are you sure you want to logout?");
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                activity.finishAffinity();
+                System.exit(0);
+            }
+        });
+
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        builder.show();
+    }
+
     @Override
     protected void onPause() {
         super.onPause();
         closeDrawer(drawerLayout);
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+        Toast.makeText(MainActivity.this,"Please logout first!", Toast.LENGTH_SHORT).show();
     }
 
 

@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".CourseListActivity"
+    android:id="@+id/drawer_layout1"
     android:background="@color/chocolate">
 
     <LinearLayout
@@ -22,7 +23,8 @@
             <LinearLayout
                 android:id="@+id/semHeader"
                 android:layout_width="match_parent"
-                android:layout_height="120dp"
+                android:layout_height="100dp"
+                android:layout_centerHorizontal="true"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="5dp"
@@ -37,19 +39,20 @@
                         android:id="@+id/cgpaHeader"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="120dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginStart="135dp"
                         android:fontFamily="@font/dekko"
                         android:gravity="start"
-                        android:text="CGPA: "
+                        android:text="GPA: "
                         android:textColor="@color/black"
                         android:textSize="35dp" />
 
                     <TextView
-                        android:id="@+id/cgpaResultTV"
+                        android:id="@+id/cgpaResultCourseTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/dekko"
-                        android:gravity="start"
+                        android:gravity="center_horizontal"
                         android:text="@string/cgpa"
                         android:textColor="@color/black"
                         android:textSize="35dp" />
@@ -57,49 +60,62 @@
                 </LinearLayout>
 
                 <TextView
-                    android:id="@+id/usernameTV"
+                    android:id="@+id/resultCourseTV"
                     android:layout_width="match_parent"
-                    android:layout_height="25dp"
+                    android:layout_height="38dp"
                     android:fontFamily="@font/dekko"
-                    android:textColor="@color/black"
                     android:gravity="center"
-                    android:textSize="20dp" />
+                    android:textColor="@color/black"
+                    android:textSize="30dp" />
 
-                <TextView
-                    android:id="@+id/studentIdTV"
-                    android:layout_width="match_parent"
-                    android:layout_height="25dp"
-                    android:fontFamily="@font/dekko"
-                    android:textColor="@color/black"
-                    android:gravity="center"
-                    android:textSize="20dp" />
 
             </LinearLayout>
 
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView_inputModule"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/semHeader"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="1dp"
+                android:layout_marginEnd="2dp"
+                android:layout_marginRight="2dp"
+                android:visibility="gone"
+                app:cardCornerRadius="4dp" />
+
+
+            <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@id/btnAddCourse"
+                android:layout_below="@id/semHeader"
+                android:background="@color/chocolate">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerview_course_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/semHeader"
+                    android:layout_marginTop="10dp" />
+
+            </ScrollView>
+
             <TextView
-                android:id="@+id/btnAddsem"
+                android:id="@+id/btnAddCourse"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_marginStart="60dp"
                 android:layout_marginEnd="60dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="3dp"
                 android:background="@drawable/btn_newsem"
                 android:fontFamily="@font/dekko"
                 android:gravity="center"
-                android:onClick="addNewCourse"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:text="ADD NEW SEMESTER"
+                android:onClick="addNewCourseFromActivity"
+                android:text="ADD NEW Course"
                 android:textColor="@color/white"
                 android:textSize="30dp" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerview_semester"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/semHeader"
-                android:layout_marginTop="10dp" />
         </RelativeLayout>
 
 

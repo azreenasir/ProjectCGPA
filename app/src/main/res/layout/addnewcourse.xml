@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/inputeModule"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:visibility="visible"
+    android:padding="6dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <AutoCompleteTextView
+                android:id="@+id/dialog_autoCompleteTextView_courseName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Course Code"
+                android:inputType="textCapWords"
+                android:maxLines="1"
+                android:textAlignment="center"
+                android:textAllCaps="true" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/dialog_credit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="credit hours"
+                    android:inputType="numberDecimal"
+                    android:textAlignment="center" />
+
+                <EditText
+                    android:id="@+id/dialog_gpa"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="grade"
+                    android:inputType="numberDecimal"
+                    android:textAlignment="center" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/dialog_btnAdd"
+            android:layout_width="100dp"
+            android:layout_height="44dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="31dp"
+            android:text="Add"
+            android:backgroundTint="@android:color/black"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+</LinearLayout>

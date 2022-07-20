@@ -1,6 +1,5 @@
 package com.projectcgpa;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -11,8 +10,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,8 +40,6 @@ public class RegisterSemester extends AppCompatActivity implements DialogActivit
     SemesterAdapter semesterAdapter;
 
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,7 +53,6 @@ public class RegisterSemester extends AppCompatActivity implements DialogActivit
         TextView fullnameTV = (TextView) findViewById(R.id.usernameTV);
         TextView studentIdTV = (TextView) findViewById(R.id.studentIdTV);
         TextView clickSem = (TextView) findViewById(R.id.clickSemTV);
-        TextView AddNewSem = (TextView) findViewById(R.id.btnAddsem);
         TextView clickHome = (TextView) findViewById(R.id.clickHome);
 
         Intent intent = getIntent();
@@ -97,9 +91,11 @@ public class RegisterSemester extends AppCompatActivity implements DialogActivit
         semesterList = new ArrayList<>();
         cgpa_header = findViewById(R.id.cgpaResultTV);
         semesterOperation = new SemesterOperation(this);
+        courseOperation = new CourseOperation(this);
+        courseList = courseOperation.getAllCourses();
         cgpaCalculator = new CgpaCalculator();
-        //String cgpa_total = cgpaCalculator.calculatedCGPA(courseList);
-        //cgpa_header.setText(cgpa_total);
+        String cgpa_total = cgpaCalculator.calculatedCGPA(courseList);
+        cgpa_header.setText(cgpa_total);
         semesterList = semesterOperation.getAllSemester();
         recyclerView_semester_list = findViewById(R.id.recyclerview_semester);
         linearLayoutManager = new LinearLayoutManager(RegisterSemester.this);

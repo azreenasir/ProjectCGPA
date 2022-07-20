@@ -84,6 +84,16 @@ public class SemesterOperation {
                 + " = ?", args);
     }
 
+    public void updateSemester(long semesterId, double gpa, double total_credit, int total_course){
+        long id = semesterId;
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(DBHelper.COLUMN_SEMESTER_GPA,gpa);
+        contentValues.put(DBHelper.COLUMN_SEMESTER_TOTAL_CREDIT,total_credit);
+        contentValues.put(DBHelper.COLUMN_SEMESTER_TOTAL_COURSE,total_course);
+        String[] whereArgs = {String.valueOf(id)};
+        sqLiteDatabase.update(DBHelper.TABLE_NAME_SEMESTER,contentValues, DBHelper.UID_SEMESTER+" =? ",whereArgs);
+    }
+
     private static Semester cursorToSmester(Cursor cursor) {
         Semester semester = new Semester();
         semester.setmId(cursor.getLong(0));

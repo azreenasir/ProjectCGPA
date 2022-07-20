@@ -25,10 +25,14 @@ public class CourseOperation {
     public CourseOperation(Context context) {
         dbHelper = new DBHelper(context);
         try {
-            sqLiteDatabase = dbHelper.getWritableDatabase();
+            open();
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public void open() throws SQLException {
+        sqLiteDatabase = dbHelper.getWritableDatabase();
     }
 
     // create
@@ -42,12 +46,6 @@ public class CourseOperation {
         Cursor cursor = sqLiteDatabase.query(DBHelper.TABLE_NAME_CGPA, mAllColumns,
                 DBHelper.UID_COURSE + " = " + insertId, null, null,
                 null, null);
-        if(cursor == null){
-            Log.d("Anik", "null "+cursor);
-        }
-        else{
-            Log.d("Anik", "not null");
-        }
         cursor.moveToFirst();
         Course newCourse = cursorToCourse(cursor);
         cursor.close();
@@ -86,6 +84,7 @@ public class CourseOperation {
         }
         return allCourse;
     }
+
     public void deleteCourse(Course course) {
         long id = course.getmId();
         sqLiteDatabase.delete(DBHelper.TABLE_NAME_CGPA, DBHelper.UID_COURSE
@@ -109,7 +108,8 @@ public class CourseOperation {
         course.setCourse_name(cursor.getString(1));
         course.setCourse_credit(cursor.getDouble(2));
         course.setObtain_gpa(cursor.getDouble(3));
-        course.setSemester_id(cursor.getInt(4));
+        course.setSemester_id(cursor.getLong(4));
+        course.getGrade();
         return course;
     }
 

@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
     app:cardBackgroundColor="@color/chocolate"
-    android:id="@+id/single_row_card_layout_semester">
+    android:id="@+id/single_row_card_layout_course">
     <LinearLayout
 
         android:layout_width="match_parent"
@@ -23,7 +23,7 @@
             android:background="@drawable/circle_res">
 
             <TextView
-                android:id="@+id/semCgpaTV"
+                android:id="@+id/courseCGPATV"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
@@ -41,56 +41,45 @@
             android:orientation="horizontal">
 
             <LinearLayout
-                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_marginTop="20dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                >
+                android:layout_marginTop="20dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/SemNameTV"
+                    android:id="@+id/courseNameTV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/black"
                     android:fontFamily="@font/dekko"
-                    android:textSize="15dp"
                     android:gravity="start"
-                    />
+                    android:textColor="@color/black"
+                    android:textSize="15dp" />
 
                 <TextView
-                    android:id="@+id/TotCreditTV"
+                    android:id="@+id/creditHoursTV"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/black"
-                    android:fontFamily="@font/dekko"
                     android:layout_marginTop="5dp"
-                    android:textSize="15dp"
+                    android:fontFamily="@font/dekko"
                     android:gravity="start"
-                    android:text="TOTAL CREDIT: "/>
+                    android:text="CREDIT HOURS: "
+                    android:textColor="@color/black"
+                    android:textSize="15dp" />
 
                 <TextView
-                    android:id="@+id/totCourseTV"
+                    android:id="@+id/gradeTV"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/black"
-                    android:fontFamily="@font/dekko"
                     android:layout_marginTop="5dp"
-                    android:textSize="15dp"
+                    android:fontFamily="@font/dekko"
                     android:gravity="start"
-                    android:text="TOTAL COURSE: "/>
+                    android:text="GRADE: "
+                    android:textColor="@color/black"
+                    android:textSize="15dp" />
 
             </LinearLayout>
-
-            <ImageButton
-                android:id="@+id/btn_delete_semester"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:background="@color/cream"
-                android:layout_marginEnd="5dp"
-                android:src="@drawable/ic_baseline_more_horiz_24"></ImageButton>
 
         </LinearLayout>
 
