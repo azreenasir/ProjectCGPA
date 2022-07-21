@@ -108,6 +108,7 @@ public class CourseListActivity extends AppCompatActivity implements DialogActiv
         dialogActivity = new DialogActivity(CourseListActivity.this);
         DialogActivity.setClickListenerForCourse(CourseListActivity.this);
         setTotalCGPA();
+        setResult();
     }
 
     @Override
@@ -119,6 +120,7 @@ public class CourseListActivity extends AppCompatActivity implements DialogActiv
         double calculated_cgpa = values.elementAt(0);
         double total_credit = values.elementAt(1);
         setTotalCGPA();
+        setResult();
         semesterOperation.updateSemester(mId, calculated_cgpa,total_credit,courseList.size());
     }
 
@@ -130,8 +132,8 @@ public class CourseListActivity extends AppCompatActivity implements DialogActiv
         double calculated_cgpa = values.elementAt(0);
         double total_credit = values.elementAt(1);
         setTotalCGPA();
+        setResult();
         semesterOperation.updateSemester(mId, calculated_cgpa,total_credit,courseList.size());
-
     }
 //
     @Override
@@ -140,6 +142,7 @@ public class CourseListActivity extends AppCompatActivity implements DialogActiv
             courseList.remove(position);
             courseAdapter.notifyItemRemoved(position);
             setTotalCGPA();
+            setResult();
             Vector<Double> values = cgpaCalculator.calculation(courseList);
             double calculated_cgpa = values.elementAt(0);
             double total_credit = values.elementAt(1);
@@ -161,6 +164,12 @@ public class CourseListActivity extends AppCompatActivity implements DialogActiv
     public void setTotalCGPA(){
         cgpa_total = cgpaCalculator.calculatedCGPA(courseList);
         cgpa_display.setText(cgpa_total);
+    }
+
+    public void setResult(){
+        String res = "Result : " + cgpaCalculator.getDeanList(courseOperation.getCoursesBySemesterId(mId));
+        result = findViewById(R.id.resultCourseTV);
+        result.setText(res);
     }
 
     @Override

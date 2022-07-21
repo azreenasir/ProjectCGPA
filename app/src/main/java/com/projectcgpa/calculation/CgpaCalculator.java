@@ -49,9 +49,9 @@ public class CgpaCalculator {
 
         if (calculated_cgpa >= 3.50)
             result = "Dean List";
-        else if (calculated_cgpa >= 2.00 || calculated_cgpa < 3.50 )
+        else if (calculated_cgpa >= 2.00 )
             result = "Pass";
-        else if (calculated_cgpa < 2.00)
+        else
             result = "Failed";
 
         return  result;
