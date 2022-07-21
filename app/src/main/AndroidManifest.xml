@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProjectCgpa">
         <activity
+            android:name=".CgpaReportChart"
+            android:exported="false" />
+        <activity
             android:name=".CourseListActivity"
             android:exported="false" />
         <activity

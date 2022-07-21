@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
         drawerLayout = findViewById(R.id.drawer_layout);
         TextView clickSem = (TextView) findViewById(R.id.clickSemTV);
+        TextView clickReport = (TextView) findViewById(R.id.clickReportTV);
         TextView fullname = (TextView) findViewById(R.id.fullnameTV);
         TextView clickHome = (TextView) findViewById(R.id.clickHome);
 
@@ -63,6 +64,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        clickReport.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,CgpaReportChart.class);
+                intent.putExtra("user",user);
+                startActivity(intent);
+            }
+        });
+
     }
 
     @Override
@@ -91,9 +101,6 @@ public class MainActivity extends AppCompatActivity {
         logout(this);
     }
 
-    public void home(View view) {
-
-    }
 
     public static void logout(Activity activity) {
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
