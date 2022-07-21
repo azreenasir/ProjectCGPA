@@ -101,7 +101,6 @@ public class CourseOperation {
         sqLiteDatabase.update(DBHelper.TABLE_NAME_CGPA,contentValues, DBHelper.UID_COURSE+" =? ",whereArgs);
     }
 
-
     private Course cursorToCourse(Cursor cursor) {
         Course course = new Course();
         course.setmId(cursor.getLong(0));

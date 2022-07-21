@@ -58,8 +58,29 @@ public class CourseListActivity extends AppCompatActivity implements DialogActiv
         dbHelper = new DBHelper(this);
 
         Intent intent = getIntent();
+        User user = (User) intent.getSerializableExtra("user");
+
         mId = intent.getLongExtra("mId", -1);
         initialize();
+
+        // navigation drawer method
+        clickSem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CourseListActivity.this,RegisterSemester.class);
+                intent.putExtra("user",user);
+                startActivity(intent);
+            }
+        });
+
+        clickHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CourseListActivity.this,MainActivity.class);
+                intent.putExtra("user",user);
+                startActivity(intent);
+            }
+        });
 
     }
 
@@ -151,7 +172,6 @@ public class CourseListActivity extends AppCompatActivity implements DialogActiv
         return true;
     }
 
-
     // nav drawer
     public void clickMenu(View view) {
         openDrawer(drawerLayout);
@@ -165,6 +185,10 @@ public class CourseListActivity extends AppCompatActivity implements DialogActiv
         if (drawerLayout.isDrawerOpen(GravityCompat.START)){
             drawerLayout.closeDrawer(GravityCompat.START);
         }
+    }
+
+    public void clickMenuHome(View view) {
+        startActivity(new Intent(CourseListActivity.this, MainActivity.class));
     }
 
     public void clickLogout(View view) {

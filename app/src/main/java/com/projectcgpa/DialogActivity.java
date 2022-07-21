@@ -169,8 +169,6 @@ public class DialogActivity {
 
             }
         });
-
-
     }
 
     public interface clickListenerForSemester {

@@ -16,6 +16,10 @@ public class User implements Serializable {
         return Student_Id;
     }
 
+    public long getStudent_id() {
+        return Student_Id;
+    }
+
     public String getFullname() {
         return fullname;
     }

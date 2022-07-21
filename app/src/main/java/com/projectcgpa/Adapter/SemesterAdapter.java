@@ -1,5 +1,6 @@
 package com.projectcgpa.Adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -17,24 +18,29 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.projectcgpa.CourseListActivity;
 import com.projectcgpa.DialogActivity;
+import com.projectcgpa.MainActivity;
 import com.projectcgpa.R;
+import com.projectcgpa.RegisterSemester;
 import com.projectcgpa.entities.Semester;
+import com.projectcgpa.entities.User;
 
 import java.text.DecimalFormat;
 import java.util.List;
 
 public class SemesterAdapter extends RecyclerView.Adapter<SemesterAdapter.MyViewHolder> {
+    private final Intent intent;
     private DecimalFormat precision = new DecimalFormat("0.00");
     private List<Semester> semesterList;
     private LayoutInflater inflater;
     private Context context;
     private DialogActivity dialogActivity;
 
-    public SemesterAdapter(Context context, List<Semester> semesterList) {
+    public SemesterAdapter(Context context, List<Semester> semesterList, Intent intent) {
         this.semesterList = semesterList;
         inflater = LayoutInflater.from(context);
         this.context = context;
         this.dialogActivity = new DialogActivity(context);
+        this.intent = intent;
     }
 
     @NonNull
@@ -57,8 +63,11 @@ public class SemesterAdapter extends RecyclerView.Adapter<SemesterAdapter.MyView
             public void onClick(View v) {
                 Semester semester = semesterList.get(holder.getAdapterPosition());
                 long mId = semester.getmId();
+                Intent intent1 = ((Activity) context).getIntent();
+                User user = (User) intent1.getSerializableExtra("user");
                 Intent intent = new Intent(context, CourseListActivity.class);
                 intent.putExtra("mId", mId);
+                intent.putExtra("user",user);
                 context.startActivity(intent);
             }
         });
@@ -114,4 +123,5 @@ public class SemesterAdapter extends RecyclerView.Adapter<SemesterAdapter.MyView
             btn_delete_semester = itemView.findViewById(R.id.btn_delete_semester);
         }
     }
+
 }

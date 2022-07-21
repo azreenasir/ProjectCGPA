@@ -36,7 +36,7 @@ public class Login extends AppCompatActivity {
 
         TextView signupBtn = (TextView) findViewById(R.id.Signup);
 
-        signupBtn.setText(fromHtml( "New? Create account" + "<u>here</u>" ));
+        signupBtn.setText(fromHtml( "New? Create account " + "<u>here</u>" ));
 
         signupBtn.setOnClickListener(new View.OnClickListener() {
             @Override

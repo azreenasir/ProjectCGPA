@@ -1,5 +1,6 @@
 package com.projectcgpa;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
@@ -40,6 +41,12 @@ public class MainActivity extends AppCompatActivity {
 
         fullname.setText(user.getFullname());
 
+        if (savedInstanceState != null) {
+            // Restore value of members from saved state
+            String username = savedInstanceState.getString("username");
+            fullname.setText(username);
+        }
+
         clickSem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,6 +65,14 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        TextView fullname = (TextView) findViewById(R.id.fullnameTV);
+        String username = (String) fullname.getText();
+        outState.putString("username",username);
+    }
+
     public void clickMenu(View view) {
         openDrawer(drawerLayout);
     }
@@ -70,6 +85,14 @@ public class MainActivity extends AppCompatActivity {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)){
             drawerLayout.closeDrawer(GravityCompat.START);
         }
+    }
+
+    public void clickLogout(View view) {
+        logout(this);
+    }
+
+    public void home(View view) {
+
     }
 
     public static void logout(Activity activity) {

@@ -1,5 +1,6 @@
 package com.projectcgpa;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -59,14 +60,14 @@ public class RegisterSemester extends AppCompatActivity implements DialogActivit
         User user = (User) intent.getSerializableExtra("user");
 
         fullnameTV.setText(user.getFullname());
-        long id = user.getStudent_Id();
+        long id = user.getStudent_id();
         String studId = Long.toString(id);
         studentIdTV.setText(studId);
 
         initialize_view();
         if(semesterList.isEmpty())
         {
-            Toast.makeText(this, "Empty List", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Empty", Toast.LENGTH_LONG).show();
         }
 
         // navigation drawer method
@@ -88,6 +89,10 @@ public class RegisterSemester extends AppCompatActivity implements DialogActivit
     }
 
     private void initialize_view() {
+        Intent intent1 = getIntent();
+        User user = (User) intent1.getSerializableExtra("user");
+        Intent intent = new Intent(RegisterSemester.this,MainActivity.class);
+        intent.putExtra("user",user);
         semesterList = new ArrayList<>();
         cgpa_header = findViewById(R.id.cgpaResultTV);
         semesterOperation = new SemesterOperation(this);
@@ -102,7 +107,7 @@ public class RegisterSemester extends AppCompatActivity implements DialogActivit
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView_semester_list.setLayoutManager(linearLayoutManager);
         recyclerView_semester_list.setHasFixedSize(true);
-        semesterAdapter = new SemesterAdapter(RegisterSemester.this, semesterList);
+        semesterAdapter = new SemesterAdapter(RegisterSemester.this, semesterList, intent);
         recyclerView_semester_list.setAdapter(semesterAdapter);
         dialogActivity = new DialogActivity(RegisterSemester.this);
         DialogActivity.setclickListenerForSemester(this);
@@ -154,4 +159,6 @@ public class RegisterSemester extends AppCompatActivity implements DialogActivit
         Toast.makeText(this,"Delete",Toast.LENGTH_SHORT).show();
         Log.d("Anik", "Data deleted");
     }
+
+
 }
