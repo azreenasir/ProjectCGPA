@@ -127,6 +127,10 @@ public class RegisterSemester extends AppCompatActivity implements DialogActivit
         }
     }
 
+    public void clickLogout(View view) {
+        MainActivity.logout(this);
+    }
+
     @Override
     protected void onPause() {
         super.onPause();
