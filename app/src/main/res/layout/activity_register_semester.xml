@@ -84,14 +84,13 @@
                     xmlns:tools="http://schemas.android.com/tools"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/chocolate"
                     android:layout_above="@id/btnAddsem"
-                    android:layout_below="@id/semHeader">
+                    android:layout_below="@id/semHeader"
+                    android:background="@color/chocolate">
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/recyclerview_semester"
                         android:layout_width="match_parent"
-
                         android:layout_height="wrap_content"
                         android:layout_below="@id/semHeader"
                         android:layout_marginTop="5dp"

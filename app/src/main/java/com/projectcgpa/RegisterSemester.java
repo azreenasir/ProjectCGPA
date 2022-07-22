@@ -1,6 +1,5 @@
 package com.projectcgpa;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -55,6 +54,7 @@ public class RegisterSemester extends AppCompatActivity implements DialogActivit
         TextView studentIdTV = (TextView) findViewById(R.id.studentIdTV);
         TextView clickSem = (TextView) findViewById(R.id.clickSemTV);
         TextView clickHome = (TextView) findViewById(R.id.clickHome);
+        TextView clickReport = (TextView) findViewById(R.id.clickReportTV);
 
         Intent intent = getIntent();
         User user = (User) intent.getSerializableExtra("user");
@@ -82,6 +82,15 @@ public class RegisterSemester extends AppCompatActivity implements DialogActivit
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(RegisterSemester.this,MainActivity.class);
+                intent.putExtra("user",user);
+                startActivity(intent);
+            }
+        });
+
+        clickReport.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(RegisterSemester.this,CgpaReportChart.class);
                 intent.putExtra("user",user);
                 startActivity(intent);
             }
@@ -159,6 +168,14 @@ public class RegisterSemester extends AppCompatActivity implements DialogActivit
         Toast.makeText(this,"Delete",Toast.LENGTH_SHORT).show();
         Log.d("Anik", "Data deleted");
     }
+
+    @Override
+    public void updateListForSemester(int itemPosition, String name, Double gpa, int course, Double credit) {
+        semesterList.set(itemPosition, new Semester(name, gpa, course, credit));
+        semesterAdapter.notifyDataSetChanged();
+        courseList = courseOperation.getAllCourses();
+    }
+
 
 
 }

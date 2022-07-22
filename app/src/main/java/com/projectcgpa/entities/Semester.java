@@ -22,6 +22,14 @@ public class Semester {
         this.student_id = student_id;
     }
 
+    public Semester(String semester_name, double total_gpa, int total_course, double total_credit) {
+        this.mId = mId;
+        this.semester_name = semester_name;
+        this.total_gpa = total_gpa;
+        this.total_course = total_course;
+        this.total_credit = total_credit;
+    }
+
     public long getmId() {
         return mId;
     }

@@ -3,7 +3,6 @@ package com.projectcgpa;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,12 +16,11 @@ import com.projectcgpa.entities.Semester;
 import com.projectcgpa.entities.User;
 
 import java.util.List;
-import java.util.Vector;
 
 public class DialogActivity {
     private Context context;
     private EditText courseNameDialog, creditDialog, gpaDialog, saveSemester;
-    private String mCourseName;
+    private String mCourseName, credit, course, semestergpa;
     private double mCredit, mGpa;
     private Button btn_add_dialog;
     private int itemPosition;
@@ -85,6 +83,40 @@ public class DialogActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 dialogInterface.dismiss();
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    public void showDialogUpdateForSemester(List<Semester> semesterList, final int itemPosition) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        View view = View.inflate(context, R.layout.addnewsem_dialog,null);
+        builder.setView(view);
+
+        int total_course = semesterList.get(itemPosition).getTotal_course();
+        Double total_credit = semesterList.get(itemPosition).getTotal_credit();
+        Double total_gpa = semesterList.get(itemPosition).getTotal_gpa();
+
+        saveSemester = view.findViewById(R.id.semNameET);
+        saveSemester.setText(semesterList.get(itemPosition).getSemester_name());
+        final Semester semester = semesterList.get(itemPosition);
+
+        builder.setPositiveButton("Update", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                String semester_name = saveSemester.getText().toString();
+                if(!semester_name.isEmpty()){
+                    semesterOperation.updateSemesterName(semester,semester_name);
+                    clickListenerForSemester.updateListForSemester(itemPosition, semester_name, total_gpa, total_course, total_credit);
+                }
+            }
+        });
+        builder.setNeutralButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
             }
         });
         AlertDialog dialog = builder.create();
@@ -174,6 +206,7 @@ public class DialogActivity {
     public interface clickListenerForSemester {
         void saveNewSemester(Semester semester);
         void refreshListAfterDeleteSemester(Semester semester, int position);
+        void updateListForSemester(int itemPosition, String semester_name, Double total_gpa, int total_course, Double total_credit);
     }
 
     public interface ClickListenerForCourse {

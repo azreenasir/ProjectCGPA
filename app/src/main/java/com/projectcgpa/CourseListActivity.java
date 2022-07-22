@@ -54,6 +54,7 @@ public class CourseListActivity extends AppCompatActivity implements DialogActiv
         drawerLayout = findViewById(R.id.drawer_layout1);
         TextView clickSem = (TextView) findViewById(R.id.clickSemTV);
         TextView clickHome = (TextView) findViewById(R.id.clickHome);
+        TextView clickReport = (TextView) findViewById(R.id.clickReportTV);
 
         dbHelper = new DBHelper(this);
 
@@ -77,6 +78,15 @@ public class CourseListActivity extends AppCompatActivity implements DialogActiv
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(CourseListActivity.this,MainActivity.class);
+                intent.putExtra("user",user);
+                startActivity(intent);
+            }
+        });
+
+        clickReport.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CourseListActivity.this,CgpaReportChart.class);
                 intent.putExtra("user",user);
                 startActivity(intent);
             }

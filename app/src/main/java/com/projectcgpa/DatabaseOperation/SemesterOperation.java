@@ -94,6 +94,17 @@ public class SemesterOperation {
         sqLiteDatabase.update(DBHelper.TABLE_NAME_SEMESTER,contentValues, DBHelper.UID_SEMESTER+" =? ",whereArgs);
     }
 
+    public void updateSemesterName(Semester semester, String name){
+        long id = semester.getmId();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(DBHelper.COLUMN_SEMESTER_NAME,name);
+        String[] whereArgs = {String.valueOf(id)};
+        sqLiteDatabase.update(DBHelper.TABLE_NAME_SEMESTER,contentValues, DBHelper.UID_SEMESTER+" =? ",whereArgs);
+
+        /*String sql = " UPDATE " + DBHelper.TABLE_NAME_SEMESTER + " SET " + DBHelper.COLUMN_SEMESTER_NAME + " = " + "' name '" + " WHERE " + DBHelper.UID_SEMESTER + " = " +id;
+        sqLiteDatabase.execSQL(sql);*/
+    }
+
     private static Semester cursorToSmester(Cursor cursor) {
         Semester semester = new Semester();
         semester.setmId(cursor.getLong(0));

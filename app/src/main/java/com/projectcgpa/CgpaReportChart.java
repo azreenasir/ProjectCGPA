@@ -86,9 +86,11 @@ public class CgpaReportChart extends AppCompatActivity {
         pieChart.setEntryLabelColor(Color.BLACK);
         pieChart.setCenterText("Semester Performance");
         pieChart.setCenterTextSize(24);
+
         pieChart.getDescription().setEnabled(false);
 
         Legend l = pieChart.getLegend();
+        l.setTextSize(18);
         l.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
         l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT);
         l.setOrientation(Legend.LegendOrientation.VERTICAL);
@@ -103,7 +105,7 @@ public class CgpaReportChart extends AppCompatActivity {
         semesterOperation = new SemesterOperation(this);
         semesterList = semesterOperation.getAllSemester();
         for(int i = 0 ; i < semesterList.size() ; i ++) {
-            double total_gpa =  semesterList.get(i).getTotal_course();
+            double total_gpa =  semesterList.get(i).getTotal_gpa();
             entries.add(new PieEntry((float) total_gpa,semesterList.get(i).getSemester_name()));
         }
 
@@ -122,7 +124,7 @@ public class CgpaReportChart extends AppCompatActivity {
         PieData data = new PieData(dataSet);
         data.setDrawValues(true);
         data.setValueFormatter(new PercentFormatter(pieChart));
-        data.setValueTextSize(12f);
+        data.setValueTextSize(20f);
         data.setValueTextColor(Color.BLACK);
 
         pieChart.setData(data);

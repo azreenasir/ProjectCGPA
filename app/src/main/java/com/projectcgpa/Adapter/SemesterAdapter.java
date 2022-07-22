@@ -80,6 +80,7 @@ public class SemesterAdapter extends RecyclerView.Adapter<SemesterAdapter.MyView
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
                         if(item.getItemId() == R.id.rename) {
+                            dialogActivity.showDialogUpdateForSemester(semesterList, holder.getAdapterPosition());
                             Toast.makeText(context,"Rename", Toast.LENGTH_SHORT).show();
                         }
                         else if (item.getItemId() == R.id.delete) {
